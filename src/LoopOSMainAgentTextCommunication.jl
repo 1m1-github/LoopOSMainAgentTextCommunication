@@ -9,7 +9,7 @@ const AGENTGROUP = Dict{String,String}()
 const ROUTERSOCKET = Ref{Socket}()
 const PUBSOCKET = Ref{Socket}()
 
-function init(routerlocation, publocation)
+function start(routerlocation, publocation)
     ROUTERSOCKET[] = Socket(ROUTER)
     PUBSOCKET[] = Socket(PUB)
     bind(ROUTERSOCKET[], routerlocation)
