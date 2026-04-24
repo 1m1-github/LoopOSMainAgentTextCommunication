@@ -1,6 +1,6 @@
 name = "LoopOSMainAgentTextCommunication"
 uuid = "43f8f9e4-5995-4c15-81e0-99d4da3ccbd3"
-version = "9.0.0"
+version = "10.0.0"
 authors = ["1m1 <imi@1m1.io>"]
 
 [deps]
