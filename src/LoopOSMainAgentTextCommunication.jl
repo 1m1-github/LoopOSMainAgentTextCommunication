@@ -6,9 +6,8 @@ import Base: take!, put!
 
 const AGENTGROUP = Dict{String,String}()
 
-const CONTEXT = ZMQ.context()
-const ROUTERSOCKET = Socket(CONTEXT, ROUTER)
-const PUBSOCKET = Socket(CONTEXT, PUB)
+const ROUTERSOCKET = Socket(ROUTER)
+const PUBSOCKET = Socket(PUB)
 
 function init(routerlocation, publocation)
     @show ROUTERSOCKET, routerlocation 
