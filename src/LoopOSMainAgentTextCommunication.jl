@@ -11,6 +11,7 @@ const ROUTERSOCKET = Socket(CONTEXT, ROUTER)
 const PUBSOCKET = Socket(CONTEXT, PUB)
 
 function init(routerlocation, publocation)
+    @show ROUTERSOCKET, routerlocation 
     bind(ROUTERSOCKET, routerlocation)
     bind(PUBSOCKET, publocation)
     listen(RECEIVEMESSAGE)
