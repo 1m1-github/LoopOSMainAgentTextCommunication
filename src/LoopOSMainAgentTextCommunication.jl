@@ -12,12 +12,11 @@ const PUBSOCKET = Ref{Socket}()
 function init(routerlocation, publocation)
     ROUTERSOCKET[] = Socket(ROUTER)
     PUBSOCKET[] = Socket(PUB)
-    @show ROUTERSOCKET[], routerlocation
     bind(ROUTERSOCKET[], routerlocation)
     bind(PUBSOCKET[], publocation)
     listen(RECEIVEMESSAGE)
     @whiletrue begin
-        frames = recv_multipart(ROUTERSOCKET[])
+        frames = ZMQ.recv_multipart(ROUTERSOCKET[])
         to = String(frames[1])
         from = String(frames[2])
         haskey(AGENTGROUP, from) || continue
@@ -33,7 +32,7 @@ function init(routerlocation, publocation)
     end
 end
 
-send(socket, message, to) = send_multipart(socket, [to, Sys.username(), message])
+send(socket, message, to) = ZMQ.send_multipart(socket, [to, Sys.username(), message])
 struct DirectMessage <: OutputPeripheral end
 put!(::DirectMessage, message::String, to::String) = send(ROUTERSOCKET[], message, to)
 struct GroupMessage <: OutputPeripheral end
